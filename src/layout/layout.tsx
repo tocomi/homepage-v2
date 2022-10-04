@@ -23,7 +23,7 @@ export const Layout: FC<{ children: ReactNode }> = ({ children }) => {
       </Head>
 
       <AppBar position="static">
-        <Container maxWidth="xl">
+        <Container maxWidth="md">
           <Toolbar disableGutters>
             {links.map((link) => {
               return (
