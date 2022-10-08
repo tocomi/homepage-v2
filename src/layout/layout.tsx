@@ -8,8 +8,8 @@ const links = [
     href: '/',
   },
   {
-    name: 'ARTIFACTS',
-    href: '/artifacts',
+    name: 'POSTS',
+    href: '/posts',
   },
 ]
 
