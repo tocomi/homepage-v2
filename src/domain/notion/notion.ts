@@ -20,7 +20,7 @@ export const getDatabase = async (databaseId = DATABASE_ID) => {
 
 export const getPage = async (pageId: string) => {
   const response = await notion.pages.retrieve({ page_id: pageId })
-  return response
+  return response as PageObjectResponse
 }
 
 export const getBlocks = async (blockId: string) => {
