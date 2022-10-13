@@ -1,12 +1,12 @@
-import { css } from '@emotion/react'
-import { Box, Chip, Paper, Typography } from '@mui/material'
+import { Box, Paper, Typography } from '@mui/material'
 import Grid from '@mui/material/Unstable_Grid2'
-import { FC, memo } from 'react'
+import { ComponentProps, FC, memo } from 'react'
+import { TagChip } from '../TagChip'
 
 type Props = {
   emoji?: string
   title: string
-  tags: string[]
+  tags: { name: string; color: ComponentProps<typeof TagChip>['colorKey'] }[]
   createdAt: string
 }
 
@@ -27,18 +27,9 @@ export const PostCard: FC<Props> = memo(function PostCard({
             {title}
           </Typography>
           <Grid container sx={{ mt: 2, ml: -5 }}>
-            {tags.map((tag, index) => (
-              <Grid key={tag}>
-                <Chip
-                  label={tag}
-                  size="small"
-                  color={index % 2 === 0 ? 'primary' : 'secondary'}
-                  css={css`
-                    .MuiChip-label {
-                      color: white;
-                    }
-                  `}
-                />
+            {tags.map((tag) => (
+              <Grid key={tag.name}>
+                <TagChip variant="filled" label={tag.name} colorKey={tag.color} />
               </Grid>
             ))}
           </Grid>
