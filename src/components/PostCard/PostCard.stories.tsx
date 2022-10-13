@@ -8,6 +8,6 @@ export const Index: ComponentStoryObj<typeof PostCard> = {
     emoji: '🐹',
     title: 'Go x MySQL の API 開発環境をサクッと用意したい',
     tags: ['Develop', 'Go', 'MySQL'],
-    createdBy: '2022/10/14',
+    createdAt: '2022/10/14',
   },
 }

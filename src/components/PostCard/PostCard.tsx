@@ -7,14 +7,14 @@ type Props = {
   emoji?: string
   title: string
   tags: string[]
-  createdBy: string
+  createdAt: string
 }
 
 export const PostCard: FC<Props> = memo(function PostCard({
   emoji = '🌵',
   title,
   tags,
-  createdBy,
+  createdAt,
 }) {
   return (
     <Paper sx={{ p: 8, pl: 2, width: 352, borderRadius: 2 }} elevation={4}>
@@ -44,7 +44,7 @@ export const PostCard: FC<Props> = memo(function PostCard({
             ))}
           </Box>
           <Box sx={{ mt: 2, textAlign: 'end' }}>
-            <Typography variant="caption">{createdBy}</Typography>
+            <Typography variant="caption">{createdAt}</Typography>
           </Box>
         </Grid>
       </Grid>
