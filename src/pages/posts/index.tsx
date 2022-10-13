@@ -1,39 +1,37 @@
-import { Typography } from '@mui/material'
+import Grid from '@mui/material/Unstable_Grid2'
 import type { InferGetStaticPropsType, NextPage } from 'next'
 import Link from 'next/link'
-import styles from './index.module.css'
+import { PostCard } from '@/components'
 import { getDatabase } from '@/domain/notion'
 
 const Posts: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({ posts }) => {
   return (
-    <>
-      <ol className={styles.posts}>
-        {posts.map((post) => {
-          const date = new Date(post.created_time).toLocaleString('ja-JP', {
-            month: '2-digit',
-            day: '2-digit',
-            year: 'numeric',
-          })
-          return (
-            <li key={post.id} className={styles.post}>
-              <h3 className={styles.postTitle}>
-                <Link href={`/posts/${post.id}`}>
-                  <a>
-                    {/* @ts-ignore title の型が取得できない */}
-                    <Typography>{post.properties.Name.title[0].plain_text}</Typography>
-                  </a>
-                </Link>
-              </h3>
-
-              <p className={styles.postDescription}>{date}</p>
-              <Link href={`/posts/${post.id}`}>
-                <a> Read post →</a>
-              </Link>
-            </li>
-          )
-        })}
-      </ol>
-    </>
+    <Grid container spacing={8}>
+      {posts.map((post) => {
+        const createdAt = new Date(post.created_time).toLocaleString('ja-JP', {
+          month: '2-digit',
+          day: '2-digit',
+          year: 'numeric',
+        })
+        return (
+          <Grid key={post.id}>
+            <Link href={`/posts/${post.id}`}>
+              <a>
+                <PostCard
+                  // @ts-ignore
+                  emoji={post.icon?.emoji}
+                  // @ts-ignore
+                  title={post.properties.Name.title[0].plain_text}
+                  // @ts-ignore
+                  tags={post.properties.Tags.multi_select.map((s: { name: string }) => s.name)}
+                  createdAt={createdAt}
+                />
+              </a>
+            </Link>
+          </Grid>
+        )
+      })}
+    </Grid>
   )
 }
 
