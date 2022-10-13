@@ -26,23 +26,22 @@ export const PostCard: FC<Props> = memo(function PostCard({
           <Typography variant="subtitle1" sx={{ fontWeight: 700 }}>
             {title}
           </Typography>
-          <Box sx={{ mt: 4 }}>
+          <Grid container sx={{ mt: 2, ml: -5 }}>
             {tags.map((tag, index) => (
-              <Chip
-                label={tag}
-                key={tag}
-                size="small"
-                sx={{ mr: 2 }}
-                color={index % 2 === 0 ? 'primary' : 'secondary'}
-                css={css`
-                  .MuiChip-label {
-                    margin-bottom: 2px;
-                    color: white;
-                  }
-                `}
-              />
+              <Grid key={tag}>
+                <Chip
+                  label={tag}
+                  size="small"
+                  color={index % 2 === 0 ? 'primary' : 'secondary'}
+                  css={css`
+                    .MuiChip-label {
+                      color: white;
+                    }
+                  `}
+                />
+              </Grid>
             ))}
-          </Box>
+          </Grid>
           <Box sx={{ mt: 2, textAlign: 'end' }}>
             <Typography variant="caption">{createdAt}</Typography>
           </Box>
