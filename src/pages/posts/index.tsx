@@ -7,15 +7,13 @@ import { getDatabase } from '@/domain/notion'
 const Posts: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({ posts }) => {
   return (
     <>
-      <Typography variant="h1">POSTS</Typography>
       <ol className={styles.posts}>
         {posts.map((post) => {
-          const date = new Date(post.last_edited_time).toLocaleString('en-US', {
-            month: 'short',
+          const date = new Date(post.created_time).toLocaleString('ja-JP', {
+            month: '2-digit',
             day: '2-digit',
             year: 'numeric',
           })
-          console.log(post.properties)
           return (
             <li key={post.id} className={styles.post}>
               <h3 className={styles.postTitle}>
