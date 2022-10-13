@@ -17,7 +17,7 @@ export const PostCard: FC<Props> = memo(function PostCard({
   createdAt,
 }) {
   return (
-    <Paper sx={{ p: 8, pl: 2, width: 352, borderRadius: 2 }} elevation={4}>
+    <Paper sx={{ p: 8, py: 4, pl: 2, width: 344, borderRadius: 2 }} elevation={4}>
       <Grid container alignItems="center" justifyContent="center" spacing={2}>
         <Grid xs={3} sx={{ textAlign: 'center' }}>
           <Typography variant="h4">{emoji}</Typography>
