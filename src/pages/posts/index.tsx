@@ -5,6 +5,7 @@ import { PostCard } from '@/components'
 import { getDatabase } from '@/domain/notion'
 
 const Posts: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({ posts }) => {
+  console.log('👾 -> posts', posts)
   return (
     <Grid container spacing={8}>
       {posts.map((post) => {
@@ -23,7 +24,7 @@ const Posts: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({ posts
                   // @ts-ignore
                   title={post.properties.Name.title[0].plain_text}
                   // @ts-ignore
-                  tags={post.properties.Tags.multi_select.map((s: { name: string }) => s.name)}
+                  tags={post.properties.Tags.multi_select}
                   createdAt={createdAt}
                 />
               </a>
