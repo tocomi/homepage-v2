@@ -5,7 +5,6 @@ import { PostCard } from '@/components'
 import { getDatabase } from '@/domain/notion'
 
 const Posts: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({ posts }) => {
-  console.log('👾 -> posts', posts)
   return (
     <Grid container spacing={8} justifyContent="center">
       {posts.map((post) => {
