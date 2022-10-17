@@ -137,7 +137,8 @@ const renderBlock = (block: BlockObjectResponse) => {
       const caption = value.caption ? value.caption[0]?.plain_text : ''
       return (
         <figure>
-          <Image src={src} alt={caption} />
+          {/* TODO: 画像のサイズを動的に取得したい */}
+          <Image src={src} alt={caption} width="800" height="400" />
           {caption && <figcaption>{caption}</figcaption>}
         </figure>
       )
