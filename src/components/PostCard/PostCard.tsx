@@ -26,14 +26,14 @@ export const PostCard: FC<Props> = memo(function PostCard({
           <Typography variant="subtitle1" sx={{ fontWeight: 700 }}>
             {title}
           </Typography>
-          <Grid container sx={{ mt: 2, ml: -5 }}>
+          <Grid container sx={{ ml: -5 }}>
             {tags.map((tag) => (
               <Grid key={tag.name}>
                 <TagChip variant="filled" label={tag.name} colorKey={tag.color} />
               </Grid>
             ))}
           </Grid>
-          <Box sx={{ mt: 2, textAlign: 'end' }}>
+          <Box sx={{ textAlign: 'end' }}>
             <Typography variant="caption">{createdAt}</Typography>
           </Box>
         </Grid>
