@@ -1,4 +1,5 @@
 import { ParsedUrlQuery } from 'node:querystring'
+import Grid from '@mui/material/Unstable_Grid2'
 import {
   BlockObjectResponse,
   BulletedListItemBlockObjectResponse,
@@ -11,6 +12,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { FC, Fragment } from 'react'
 import styles from './post.module.css'
+import { TagChip } from '@/components'
 import { getBlocks, getDatabase, getPage } from '@/domain/notion'
 
 export const Text: FC<{
@@ -212,6 +214,16 @@ const Post: FC<Props> = ({ page, blocks }) => {
           {/* @ts-ignore title の型が取得できない */}
           <Text textProperties={page.properties.Name.title} />
         </h1>
+
+        <Grid container sx={{ ml: -1 }} spacing={2}>
+          {/* @ts-ignore */}
+          {page.properties.Tags.multi_select.map((tag) => (
+            <Grid key={tag.name}>
+              <TagChip variant="filled" label={tag.name} colorKey={tag.color} />
+            </Grid>
+          ))}
+        </Grid>
+
         <section>
           {blocks.map((block) => (
             <Fragment key={block.id}>{renderBlock(block)}</Fragment>
