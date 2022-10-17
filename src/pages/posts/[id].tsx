@@ -1,5 +1,8 @@
 import { ParsedUrlQuery } from 'node:querystring'
+import { css } from '@emotion/react'
+import { Button, Typography } from '@mui/material'
 import Grid from '@mui/material/Unstable_Grid2'
+import { Box } from '@mui/system'
 import {
   BlockObjectResponse,
   BulletedListItemBlockObjectResponse,
@@ -88,19 +91,37 @@ const renderBlock = (block: BlockObjectResponse) => {
       )
     case 'heading_1':
       return (
-        <h1>
+        <h1
+          css={(theme) => css`
+            margin-top: 56px;
+            border-left: solid 8px ${theme.palette.primary.main};
+            padding-left: 8px;
+          `}
+        >
           <Text textProperties={value.rich_text} />
         </h1>
       )
     case 'heading_2':
       return (
-        <h2>
+        <h2
+          css={(theme) => css`
+            margin-top: 48px;
+            border-left: solid 6px ${theme.palette.primary.main};
+            padding-left: 8px;
+          `}
+        >
           <Text textProperties={value.rich_text} />
         </h2>
       )
     case 'heading_3':
       return (
-        <h3>
+        <h3
+          css={(theme) => css`
+            margin-top: 40px;
+            border-left: solid 4px ${theme.palette.primary.main};
+            padding-left: 8px;
+          `}
+        >
           <Text textProperties={value.rich_text} />
         </h3>
       )
@@ -202,7 +223,7 @@ const Post: FC<Props> = ({ page, blocks }) => {
   console.log('👾 -> blocks', blocks)
 
   return (
-    <div>
+    <Box sx={{ mb: 8 }}>
       <Head>
         {/* @ts-ignore title の型が取得できない */}
         <title>{page.properties.Name.title[0].plain_text}</title>
@@ -228,12 +249,19 @@ const Post: FC<Props> = ({ page, blocks }) => {
           {blocks.map((block) => (
             <Fragment key={block.id}>{renderBlock(block)}</Fragment>
           ))}
-          <Link href="/posts">
-            <a className={styles.back}>← Go home</a>
-          </Link>
         </section>
+
+        <Box sx={{ mt: 16, textAlign: 'end' }}>
+          <Button>
+            <Link href="/posts">
+              <a>
+                <Typography variant="body1">👈 投稿一覧に戻る</Typography>
+              </a>
+            </Link>
+          </Button>
+        </Box>
       </article>
-    </div>
+    </Box>
   )
 }
 
