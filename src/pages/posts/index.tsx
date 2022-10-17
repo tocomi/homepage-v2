@@ -7,7 +7,7 @@ import { getDatabase } from '@/domain/notion'
 const Posts: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({ posts }) => {
   console.log('👾 -> posts', posts)
   return (
-    <Grid container spacing={8}>
+    <Grid container spacing={8} justifyContent="center">
       {posts.map((post) => {
         const createdAt = new Date(post.created_time).toLocaleString('ja-JP', {
           month: '2-digit',
